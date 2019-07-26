@@ -1,5 +1,7 @@
 import random
 import sys
+import truerandom
+import time
 
 mfNames = ["Adam","Andrew","Albert","Alfred","Anthony","Aaron","Allan","Angelo","Andy","Austin",
 "Barron","Barry","Bart","Benny","Bill","Blake","Brandon","Brian","Bryan","Brad","Brent","Brett","Bob","Bobby",
@@ -71,31 +73,69 @@ lNames = ["Aaron","Abbey","Abby","Adams","Andrews","Albers","Anderson","Anthony"
 "Xavier",
 "Young"]
 
-def genName():
+def genName(trueRandom):
+	"""
+	Generate a single random full name using first and last names
+	if the user wants a true random experience, name generation will take longer
+	"""
 	global mfNames
 	global ffNames
 	global mis
 	global lNames
 	
-	mfn = mfNames[random.randrange(0,len(mfNames))]
-	ffn = ffNames[random.randrange(0,len(ffNames))]
-	ln = lNames[random.randrange(0,len(lNames))]
-	
-	choice = random.randrange(0,100)
-	if choice <= 50:
-		ch = random.randrange(0,50)
-		chh = random.randrange(0,len(mis))
-		if ch == 25:
-			return (">" + mfn + " " + mis[chh] + " " + ln)
-		return (">" + mfn + " " + ln)
-	elif choice > 50 and choice <= 98:
-		return (">" + ffn + " " + ln)
-	return (">Larry The Cable Guy")
+	if trueRandom:
+		maleList = truerandom.randRange(1,0,len(mfNames))
+		maleIndex = int(maleList[0])
+		mfn = mfNames[maleIndex]
+		time.sleep(0.5)
+		
+		
+		femaleList = truerandom.randRange(1,0,len(ffNames))
+		femaleIndex = int(femaleList[0])
+		ffn = ffNames[femaleIndex]
+		time.sleep(0.5)
+		
+		
+		lastList = truerandom.randRange(1,0,len(lNames))
+		lastIndex = int(lastList[0])
+		ln = lNames[lastIndex]
+		time.sleep(0.5)
 
+		choice = truerandom.randRange(2,0,100)
+		time.sleep(0.5)
+		if int(choice[0]) <= 50:
+			chhList = truerandom.randRange(1,0,len(mis))
+			chh = int(chhList[0])
+			time.sleep(0.5)
+			if int(choice[1]) == 25:
+				return (">" + mfn + " " + mis[chh] + " " + ln)
+			return (">" + mfn + " " + ln)
+		elif int(choice[0]) > 50 and int(choice[0]) <= 98:
+			return (">" + ffn + " " + ln)
+		return (">Larry The Cable Guy")
+	else:
+		mfn = mfNames[random.randrange(0,len(mfNames))]
+		ffn = ffNames[random.randrange(0,len(ffNames))]
+		ln = lNames[random.randrange(0,len(lNames))]
+
+		choice = random.randrange(0,100)
+		if choice <= 50:
+			ch = random.randrange(0,50)
+			chh = random.randrange(0,len(mis))
+			if ch == 25:
+				return (">" + mfn + " " + mis[chh] + " " + ln)
+			return (">" + mfn + " " + ln)
+		elif choice > 50 and choice <= 98:
+			return (">" + ffn + " " + ln)
+		return (">Larry The Cable Guy")
+
+
+useTrueRandom = False
 
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
 	for i in range(nNames):
-		print(genName())
+		print(genName(useTrueRandom))
 else:
-	print(genName())
+	print(genName(useTrueRandom))
+
