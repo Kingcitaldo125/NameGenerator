@@ -89,24 +89,24 @@ def genName(trueRandom):
 		if int(choice[0]) >= 99:
 			return (">Larry The Cable Guy")
 		
-		maleList = truerandom.randRange(1,0,len(mfNames))
+		maleList = truerandom.randRange(1,0,len(mfNames)-1)
 		maleIndex = int(maleList[0])
 		mfn = mfNames[maleIndex]
 		time.sleep(0.5)
 		
 		
-		femaleList = truerandom.randRange(1,0,len(ffNames))
+		femaleList = truerandom.randRange(1,0,len(ffNames)-1)
 		femaleIndex = int(femaleList[0])
 		ffn = ffNames[femaleIndex]
 		time.sleep(0.5)
 		
 		
-		lastList = truerandom.randRange(1,0,len(lNames))
+		lastList = truerandom.randRange(1,0,len(lNames)-1)
 		lastIndex = int(lastList[0])
 		ln = lNames[lastIndex]
 		time.sleep(0.5)
 		if int(choice[0]) <= 50:
-			chhList = truerandom.randRange(1,0,len(mis))
+			chhList = truerandom.randRange(1,0,len(mis)-1)
 			chh = int(chhList[0])
 			time.sleep(0.5)
 			if int(choice[1]) == 25:
@@ -131,10 +131,12 @@ def genName(trueRandom):
 		return (">Larry The Cable Guy")
 
 
-useTrueRandom = False
+useTrueRandom = True
 
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
+	if useTrueRandom and nNames > 10:
+		nNames = 10 # limit
 	for i in range(nNames):
 		print(genName(useTrueRandom))
 else:
