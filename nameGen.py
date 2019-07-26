@@ -84,6 +84,11 @@ def genName(trueRandom):
 	global lNames
 	
 	if trueRandom:
+		choice = truerandom.randRange(2,0,100)
+		time.sleep(0.5)
+		if int(choice[0]) >= 99:
+			return (">Larry The Cable Guy")
+		
 		maleList = truerandom.randRange(1,0,len(mfNames))
 		maleIndex = int(maleList[0])
 		mfn = mfNames[maleIndex]
@@ -100,9 +105,6 @@ def genName(trueRandom):
 		lastIndex = int(lastList[0])
 		ln = lNames[lastIndex]
 		time.sleep(0.5)
-
-		choice = truerandom.randRange(2,0,100)
-		time.sleep(0.5)
 		if int(choice[0]) <= 50:
 			chhList = truerandom.randRange(1,0,len(mis))
 			chh = int(chhList[0])
@@ -112,7 +114,6 @@ def genName(trueRandom):
 			return (">" + mfn + " " + ln)
 		elif int(choice[0]) > 50 and int(choice[0]) <= 98:
 			return (">" + ffn + " " + ln)
-		return (">Larry The Cable Guy")
 	else:
 		mfn = mfNames[random.randrange(0,len(mfNames))]
 		ffn = ffNames[random.randrange(0,len(ffNames))]
