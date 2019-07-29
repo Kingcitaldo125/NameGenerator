@@ -131,7 +131,7 @@ def genName(trueRandom):
 		return (">Larry The Cable Guy")
 
 
-useTrueRandom = True
+useTrueRandom = False
 
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
