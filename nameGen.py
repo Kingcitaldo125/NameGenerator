@@ -158,6 +158,10 @@ def genName(trueRandom):
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
 	for i in range(nNames):
+		random.shuffle(mfNames)
+		random.shuffle(ffNames)
+		random.shuffle(mis)
+		random.shuffle(lNames)
 		print(i+1,genName(False))
 elif len(sys.argv) == 3:
 	nNames = int(sys.argv[1])
@@ -167,6 +171,10 @@ elif len(sys.argv) == 3:
 		print("Default True Random number of names is 10")
 		nNames = 10 # limit
 	for i in range(nNames):
+		random.shuffle(mfNames)
+		random.shuffle(ffNames)
+		random.shuffle(mis)
+		random.shuffle(lNames)
 		print(i+1,genName(useTrueRandom))
 else:
 	print(genName(useTrueRandom))
