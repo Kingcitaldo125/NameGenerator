@@ -21,14 +21,14 @@ mfNames = ["Adam","Andrew","Albert","Alfred","Anthony","Aaron","Allan","Angelo",
 "Paul","Pete","Peter","Phillip",
 "Quinn","Quincy",
 "Randy","Ray","Rhys","Rob","Robert","Robby","Robbie","Ronald","Ron","Ren","Rick","Richard","Ricky","Rickey","Rudy","Ryan",
-"Scott","Sean","Seth","Simon","Steve","Stephen","Steven","Stevie",
+"Scott","Sean","Seth","Simon","Stan","Steve","Stephen","Steven","Stevie",
 "Thomas","Timmy","Tim","Timmothy","Tommy","Travis","Trevor","Trey","Tony","Tom","Tyler",
 "Vince",
 "William","Will","Willy","Willie","Winston",
 "Xavier",
 "Zach","Zachary","Zack","Zackary"]
 
-ffNames = ["Ashley","Ashlee","Allison","Abigail","Ally","Abby","Alexandra","Anastasia","Ann","Anna","Annie","April",
+ffNames = ["Amy","Ashley","Ashlee","Allison","Abigail","Ally","Abby","Alexandra","Anastasia","Ann","Anna","Annie","April",
 "Barbara","Beth","Brandy","Brandi","Britt","Brittany",
 "Carissa","Carley","Carla","Carli","Catherine","Cathy","Claire",
 "Darcy","Darla","Deb","Debra","Donna","Drew",
@@ -52,7 +52,7 @@ mis = ["A.","B.","C.","D.","E.","F.","G.","H.","I.","J.","K.","L.","M.","N.","O.
 
 lNames = ["Aaron","Abbey","Abby","Adams","Andrews","Albers","Anderson","Anthony","Allen","Ashley","Austin","Arelt",
 "Barrett","Bart","Belcher","Betts","Blake","Bond","Bonds","Brown","Bird","Bruce","Brule","Bryant","Burgundy","Butler","Byrd",
-"Carpenter","Carver","Clark","Crawford","Collins","Coorey","Culberson","Culver",
+"Carpenter","Carter","Carver","Clark","Crawford","Collins","Coorey","Culberson","Culver",
 "Dalton","Davis","Day","Devers","Dole","Donaldson","Donovan","Duffy","Dunn","Dykstra",
 "Evers",
 "Fry","Fuller",
@@ -84,36 +84,60 @@ def genName(trueRandom):
 	global lNames
 	
 	if trueRandom:
-		choice = truerandom.randRange(2,0,100)
-		time.sleep(0.5)
-		if int(choice[0]) >= 99:
-			return (">Larry The Cable Guy")
+		lenList = []
+		lenList.append(len(mfNames)-1)
+		lenList.append(len(ffNames)-1)
+		lenList.append(len(lNames)-1)
+		lenList.append(len(mis)-1)
+		lenList = sorted(lenList)
+		#print(lenList)
+		#print("Cap:",cap)
+		cap = int(lenList[-1])
 		
-		maleList = truerandom.randRange(1,0,len(mfNames)-1)
-		maleIndex = int(maleList[0])
+		masterList = truerandom.randRange(10,0,cap)
+		time.sleep(1)
+		masterList = [int(ii) for ii in masterList]
+		#masterList = sorted(masterList)
+		#print(masterList)
+		if masterList[9] >= cap-2:
+			return ("Larry The Cable Guy")
+			
+		masterListDecider = truerandom.randRange(50,0,len(masterList)-1)
+		time.sleep(1)
+		masterListDecider = [int(ii) for ii in masterListDecider]
+			
+		maleIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
+		if maleIndex >= len(mfNames):
+			maleIndex = random.randrange(0,len(mfNames))
 		mfn = mfNames[maleIndex]
-		time.sleep(0.5)
 		
 		
-		femaleList = truerandom.randRange(1,0,len(ffNames)-1)
-		femaleIndex = int(femaleList[0])
+		femaleIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
+		if femaleIndex >= len(ffNames):
+			femaleIndex = random.randrange(0,len(ffNames))
 		ffn = ffNames[femaleIndex]
-		time.sleep(0.5)
 		
 		
-		lastList = truerandom.randRange(1,0,len(lNames)-1)
-		lastIndex = int(lastList[0])
+		lastIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
+		if lastIndex >= len(lNames):
+			lastIndex = random.randrange(0,len(lNames))
 		ln = lNames[lastIndex]
-		time.sleep(0.5)
-		if int(choice[0]) <= 50:
-			chhList = truerandom.randRange(1,0,len(mis)-1)
-			chh = int(chhList[0])
-			time.sleep(0.5)
-			if int(choice[1]) == 25:
-				return (">" + mfn + " " + mis[chh] + " " + ln)
-			return (">" + mfn + " " + ln)
-		elif int(choice[0]) > 50 and int(choice[0]) <= 98:
-			return (">" + ffn + " " + ln)
+		
+		#print(mfn,maleIndex,ffn,femaleIndex,ln,lastIndex)
+		
+		mListDecider = masterListDecider[random.randrange(0,len(masterListDecider))]
+		chhDecider = masterListDecider[random.randrange(0,len(masterListDecider))]
+		initialDecider = masterListDecider[random.randrange(0,len(masterListDecider))]
+		
+		if masterList[mListDecider] > cap-int(cap/2) and masterList[mListDecider] <= cap:
+			chh = masterList[chhDecider]
+			if int(masterList[initialDecider]) == int(cap/2):
+				if chh >= len(mis):
+					chh = random.randrange(0,len(mis))
+					return (mfn + " " + mis[chh] + " " + ln)
+			return (mfn + " " + ln)
+		elif masterList[mListDecider] <= cap-int(cap/2):
+			return (ffn + " " + ln)
 	else:
 		mfn = mfNames[random.randrange(0,len(mfNames))]
 		ffn = ffNames[random.randrange(0,len(ffNames))]
@@ -124,21 +148,21 @@ def genName(trueRandom):
 			ch = random.randrange(0,50)
 			chh = random.randrange(0,len(mis))
 			if ch == 25:
-				return (">" + mfn + " " + mis[chh] + " " + ln)
-			return (">" + mfn + " " + ln)
+				return (mfn + " " + mis[chh] + " " + ln)
+			return (mfn + " " + ln)
 		elif choice > 50 and choice <= 98:
-			return (">" + ffn + " " + ln)
-		return (">Larry The Cable Guy")
+			return (ffn + " " + ln)
+		return ("Larry The Cable Guy")
 
 
 useTrueRandom = False
+#useTrueRandom = True
 
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
 	if useTrueRandom and nNames > 10:
 		nNames = 10 # limit
 	for i in range(nNames):
-		print(genName(useTrueRandom))
+		print(i+1,genName(useTrueRandom))
 else:
 	print(genName(useTrueRandom))
-
