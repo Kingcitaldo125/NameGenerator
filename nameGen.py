@@ -30,9 +30,9 @@ mfNames = ["Adam","Andrew","Albert","Alfred","Anthony","Aaron","Allan","Angelo",
 
 ffNames = ["Amy","Ashley","Ashlee","Allison","Abigail","Ally","Abby","Alexandra","Anastasia","Ann","Anna","Annie","April",
 "Barbara","Beth","Brandy","Brandi","Britt","Brittany",
-"Carissa","Carley","Carla","Carli","Catherine","Cathy","Claire",
+"Carissa","Carley","Carla","Carli","Catherine","Cathy","Claire","Courtney",
 "Darcy","Darla","Deb","Debra","Donna","Drew",
-"Ellyse","Elly","Emily","Emma","Erica","Erin","Euvondia",
+"Ellyse","Elly","Emily","Emma","Erica","Erin",
 "Fredricka",
 "Gemma","Gina",
 "India","Ivanka",
@@ -155,12 +155,16 @@ def genName(trueRandom):
 		return ("Larry The Cable Guy")
 
 
-useTrueRandom = False
-#useTrueRandom = True
-
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
+	for i in range(nNames):
+		print(i+1,genName(False))
+elif len(sys.argv) == 3:
+	nNames = int(sys.argv[1])
+	if str(sys.argv[2]) == "true" or str(sys.argv[2]) == "True":
+		useTrueRandom = True
 	if useTrueRandom and nNames > 10:
+		print("Default True Random number of names is 10")
 		nNames = 10 # limit
 	for i in range(nNames):
 		print(i+1,genName(useTrueRandom))
