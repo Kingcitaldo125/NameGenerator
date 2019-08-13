@@ -154,6 +154,7 @@ def genName(trueRandom):
 			return (ffn + " " + ln)
 		return ("Larry The Cable Guy")
 
+windowNameLimit = 10
 
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
@@ -167,9 +168,9 @@ elif len(sys.argv) == 3:
 	nNames = int(sys.argv[1])
 	if str(sys.argv[2]) == "true" or str(sys.argv[2]) == "True":
 		useTrueRandom = True
-	if useTrueRandom and nNames > 10:
-		print("Default True Random number of names is 10")
-		nNames = 10 # limit
+	if useTrueRandom and nNames > windowNameLimit:
+		print("Default True Random number of names is "+str(windowNameLimit))
+		nNames = windowNameLimit # limit
 	for i in range(nNames):
 		random.shuffle(mfNames)
 		random.shuffle(ffNames)
