@@ -83,6 +83,8 @@ def genName(trueRandom):
 	global mis
 	global lNames
 	
+	doubleNameOdds = 48
+	
 	if trueRandom:
 		lenList = []
 		lenList.append(len(mfNames)-1)
@@ -90,15 +92,11 @@ def genName(trueRandom):
 		lenList.append(len(lNames)-1)
 		lenList.append(len(mis)-1)
 		lenList = sorted(lenList)
-		#print(lenList)
-		#print("Cap:",cap)
 		cap = int(lenList[-1])
 		
 		masterList = truerandom.randRange(10,0,cap)
 		time.sleep(1)
 		masterList = [int(ii) for ii in masterList]
-		#masterList = sorted(masterList)
-		#print(masterList)
 		if masterList[9] >= cap-2:
 			return ("Larry The Cable Guy")
 			
@@ -109,21 +107,19 @@ def genName(trueRandom):
 		maleIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
 		if maleIndex >= len(mfNames):
 			maleIndex = random.randrange(0,len(mfNames))
-		mfn = mfNames[maleIndex]
+		mfn = mfNames[maleIndex] # male first name
 		
 		
 		femaleIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
 		if femaleIndex >= len(ffNames):
 			femaleIndex = random.randrange(0,len(ffNames))
-		ffn = ffNames[femaleIndex]
+		ffn = ffNames[femaleIndex] # female first name
 		
 		
 		lastIndex = masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]
 		if lastIndex >= len(lNames):
 			lastIndex = random.randrange(0,len(lNames))
-		ln = lNames[lastIndex]
-		
-		#print(mfn,maleIndex,ffn,femaleIndex,ln,lastIndex)
+		ln = lNames[lastIndex] # last name
 		
 		mListDecider = masterListDecider[random.randrange(0,len(masterListDecider))]
 		chhDecider = masterListDecider[random.randrange(0,len(masterListDecider))]
@@ -137,11 +133,16 @@ def genName(trueRandom):
 					return (mfn + " " + mis[chh] + " " + ln)
 			return (mfn + " " + ln)
 		elif masterList[mListDecider] <= cap-int(cap/2):
+			doubleLName = truerandom.randRange(1,0,50)
+			doubleLName = [int(ii) for ii in doubleLName]
+			if doubleLName[random.randrange(0,len(doubleLName))] >= doubleNameOdds:
+				secondLName = lNames[masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]]
+				return (ffn + " " + ln + "-" + secondLName)
 			return (ffn + " " + ln)
 	else:
-		mfn = mfNames[random.randrange(0,len(mfNames))]
-		ffn = ffNames[random.randrange(0,len(ffNames))]
-		ln = lNames[random.randrange(0,len(lNames))]
+		mfn = mfNames[random.randrange(0,len(mfNames))] # male first name
+		ffn = ffNames[random.randrange(0,len(ffNames))] # female first name
+		ln = lNames[random.randrange(0,len(lNames))] # last name
 
 		choice = random.randrange(0,100)
 		if choice <= 50:
@@ -151,6 +152,10 @@ def genName(trueRandom):
 				return (mfn + " " + mis[chh] + " " + ln)
 			return (mfn + " " + ln)
 		elif choice > 50 and choice <= 98:
+			doubleLName = random.randrange(0,50)
+			if doubleLName >= doubleNameOdds:
+				secondLName = lNames[random.randrange(0,len(lNames))]
+				return (ffn + " " + ln + "-" + secondLName)
 			return (ffn + " " + ln)
 		return ("Larry The Cable Guy")
 
