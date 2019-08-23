@@ -97,7 +97,7 @@ def genName(trueRandom):
 		masterList = truerandom.randRange(10,0,cap)
 		time.sleep(1)
 		masterList = [int(ii) for ii in masterList]
-		if masterList[9] >= cap-2:
+		if masterList[9] >= cap:
 			return ("Larry The Cable Guy")
 			
 		masterListDecider = truerandom.randRange(50,0,len(masterList)-1)
@@ -151,7 +151,7 @@ def genName(trueRandom):
 			if ch == 25:
 				return (mfn + " " + mis[chh] + " " + ln)
 			return (mfn + " " + ln)
-		elif choice > 50 and choice <= 98:
+		elif choice > 50 and choice <= 99:
 			doubleLName = random.randrange(0,50)
 			if doubleLName >= doubleNameOdds:
 				secondLName = lNames[random.randrange(0,len(lNames))]
