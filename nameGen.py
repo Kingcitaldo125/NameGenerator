@@ -56,10 +56,10 @@ lNames = ["Aaron","Abbey","Abby","Adams","Andrews","Albers","Anderson","Anthony"
 "Dalton","Davis","Day","Devers","Dole","Donaldson","Donovan","Duffy","Dunn","Dykstra",
 "Evans","Evers",
 "Finch","Fry","Fuller",
-"Gant","Gardner","George","Grant","Granderson","Greene",
+"Gant","Gardner","George","Grant","Granderson","Gray","Greene",
 "Hand","Hare","Harris","Hamilton","Henderson","Hickey","Hill","Hudson",
 "James","Jefferson","Jones","John","Johnson","Jordan","Joseph",
-"King","Key","Klosterman","Knox",
+"King","Kelly","Kelley","Key","Klosterman","Knox",
 "Lang","Leonard","Long",
 "Mackey","Maddox","Madducks","Madden","Martin","McDonald","McGriff","McNabb","Miller","Moore","Morgan",
 "Nelson","Nolan","Norman",
@@ -83,7 +83,7 @@ def genName(trueRandom):
 	global mis
 	global lNames
 	
-	doubleNameOdds = 48
+	doubleNameOdds = len(lNames)-3
 	
 	if trueRandom:
 		lenList = []
@@ -133,10 +133,16 @@ def genName(trueRandom):
 					return (mfn + " " + mis[chh] + " " + ln)
 			return (mfn + " " + ln)
 		elif masterList[mListDecider] <= cap-int(cap/2):
-			doubleLName = truerandom.randRange(1,0,50)
+			doubleNameLength = len(lNames)-1
+			
+			doubleLName = truerandom.randRange(1,0,doubleNameLength)
 			doubleLName = [int(ii) for ii in doubleLName]
-			if doubleLName[random.randrange(0,len(doubleLName))] >= doubleNameOdds:
-				secondLName = lNames[masterList[masterListDecider[random.randrange(0,len(masterListDecider))]]]
+			
+			doubleLNameDecider = truerandom.randRange(5,0,doubleNameLength)
+			doubleLNameDecider = [int(ii) for ii in doubleLNameDecider]
+			
+			if doubleLName[0] >= doubleNameOdds:
+				secondLName = lNames[doubleLNameDecider[random.randrange(0,len(doubleLNameDecider))]]
 				return (ffn + " " + ln + "-" + secondLName)
 			return (ffn + " " + ln)
 	else:
