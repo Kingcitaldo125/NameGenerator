@@ -167,6 +167,7 @@ def genName(trueRandom):
 
 windowNameLimit = 10
 
+useTrueRandom = False
 if len(sys.argv) == 2:
 	nNames = int(sys.argv[1])
 	for i in range(nNames):
