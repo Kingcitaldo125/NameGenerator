@@ -54,7 +54,7 @@ lNames = ["Aaron","Abbey","Abby","Adams","Andrews","Albers","Anderson","Anthony"
 "Baker","Barrett","Bart","Barnes","Belcher","Betts","Blake","Black","Bond","Bonds","Brown","Bird","Bruce","Brule","Bryant","Burgundy","Butler","Byrd",
 "Carpenter","Carter","Carver","Clark","Crawford","Collins","Cook","Coorey","Culberson","Culver",
 "Dalton","Davis","Day","Devers","Dole","Donaldson","Donovan","Duffy","Dunn","Dykstra",
-"Evans","Evers",
+"Edwards","Evans","Evers",
 "Finch","Fry","Fuller",
 "Gant","Gardner","George","Grant","Granderson","Gray","Greene",
 "Hand","Hare","Harris","Hamilton","Harvey","Henderson","Hickey","Hill","Hudson",
